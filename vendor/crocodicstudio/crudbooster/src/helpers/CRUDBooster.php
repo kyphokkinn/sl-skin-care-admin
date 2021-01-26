@@ -1973,4 +1973,19 @@ class CRUDBooster
 
         }
     }
+
+    public static function copyPostdata(&$postdata, &$past_data, $table='') {
+        foreach($postdata as $key=>$value) {
+            if ($value != null) {
+                $past_data[$table.$key] = $value;
+            }
+            if (!in_array($key, ['offset', 'limit', 'orderby'])) {
+                unset($postdata[$key]);
+            }
+        }
+        unset($past_data[$table.'offset']);
+        unset($past_data[$table.'limit']);
+        unset($past_data[$table.'orderby']);
+    }
+
 }
