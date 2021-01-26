@@ -46,7 +46,7 @@
 			$this->form = [];
 			$this->form[] = ['label'=>'Image Path','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'textarea','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Product List','name'=>'product_list','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			$this->form[] = ['label'=>'Total Price','name'=>'total_price','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Price Set','name'=>'price_set','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
