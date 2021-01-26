@@ -322,6 +322,21 @@
 	    }
 
 
+		public static function get_device_tokens($id=0)
+		{
+			$items = DB::table('tb_device_token')
+				->select('token', 'user_id')
+				->whereNull('deleted_at')
+				->where('status', 'Active');
+			if ($id != 0) {
+				$items = $items->where('user_id', $id);
+			}
+			$items = $items->get()->toArray();
+			return [
+				'token' => array_column($items, 'token'),
+				'user_id_list' => array_column($items, 'user_id')
+			];
+		}
 
 	    //By the way, you can still create your own method in here... :) 
 

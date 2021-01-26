@@ -4,6 +4,7 @@
 		use Request;
 		use DB;
 		use CRUDBooster;
+		use App\Http\Controllers\AdminPushnotificationsController;
 
 		class ApiNotificationCreateController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
@@ -26,7 +27,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-
+				AdminPushnotificationsController::push_notification($result['id']);
 		    }
 
 		}

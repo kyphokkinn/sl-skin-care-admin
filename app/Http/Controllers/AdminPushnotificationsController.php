@@ -4,6 +4,7 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+	use AdminDeviceTokensController;
 
 	class AdminPushnotificationsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -276,7 +277,7 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-
+			self::push_notification($id);
 	    }
 
 	    /* 
@@ -329,6 +330,25 @@
 	    }
 
 
+		public static function push_notification($id)
+		{
+			$item = CRUDBooster::first('tb_notification', $id);
+			if ($item) {
+				$tokens = array();
+				$data = array();
+				if ($item->is_all == "Yes") {
+					$tokens = AdminDeviceTokensController::get_device_tokens();
+				} else {
+					$tokens = AdminDeviceTokensController::get_device_tokens($item->user_id);
+				}
+				DB::table('tb_notification')
+					->where('id', $id)
+					->update([
+						'user_id_list' => implode(',', $tokens['user_id_list'])
+					]);
+				$send = CRUDBooster::sendFCM($tokens['token'], $data);
+			}
+		}
 
 	    //By the way, you can still create your own method in here... :) 
 

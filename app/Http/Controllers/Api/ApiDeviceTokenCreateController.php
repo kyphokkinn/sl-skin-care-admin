@@ -16,7 +16,15 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-
+				$item = DB::table($this->table)
+					->where($postdata)
+					->first();
+				if ($item) {
+					$this->output([
+						'api_status' => 1,
+						'api_message' => 'success'
+					]);
+				}
 		    }
 
 		    public function hook_query(&$query) {
