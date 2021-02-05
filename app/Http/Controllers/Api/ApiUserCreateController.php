@@ -26,7 +26,11 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-
+				$item = CRUDBooster::first($this->table, $result['id']);
+				if ($item->photo) {
+					$item->photo = url($item->photo);
+				}
+				$result['data'] = $item;
 		    }
 
 		}
