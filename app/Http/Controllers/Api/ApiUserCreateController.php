@@ -16,7 +16,7 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-
+				$postdata['id_cms_privileges'] = 4;
 		    }
 
 		    public function hook_query(&$query) {
