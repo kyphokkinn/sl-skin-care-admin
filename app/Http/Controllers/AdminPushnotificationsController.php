@@ -4,7 +4,7 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
-	use AdminDeviceTokensController;
+	use App\Http\Controllers\AdminDeviceTokensController;
 
 	class AdminPushnotificationsController extends \crocodicstudio\crudbooster\controllers\CBController {
 

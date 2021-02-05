@@ -326,7 +326,6 @@
 		{
 			$items = DB::table('tb_device_token')
 				->select('token', 'user_id')
-				->whereNull('deleted_at')
 				->where('status', 'Active');
 			if ($id != 0) {
 				$items = $items->where('user_id', $id);

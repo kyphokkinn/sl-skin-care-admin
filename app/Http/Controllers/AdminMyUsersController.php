@@ -5,12 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminOrdersController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminMyUsersController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "driver_name";
+			$this->title_field = "name";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -25,64 +25,41 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "tb_order";
+			$this->table = "cms_users";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Order Date","name"=>"order_date"];
-			$this->col[] = ["label"=>"Customer","name"=>"customer_id","join"=>"cms_users,name"];
-			$this->col[] = ["label"=>"Receiver Phone","name"=>"receiver_phone"];
+			$this->col[] = ["label"=>"Name","name"=>"name"];
+			$this->col[] = ["label"=>"Phone","name"=>"phone"];
+			$this->col[] = ["label"=>"Photo","name"=>"photo","image"=>true];
 			$this->col[] = ["label"=>"Address","name"=>"address"];
-			$this->col[] = ["label"=>"Total Amount","name"=>"total_amount"];
-			$this->col[] = ["label"=>"Grand Total","name"=>"grand_total"];
-			$this->col[] = ["label"=>"Screen Pay","name"=>"screen_pay"];
-			$this->col[] = ["label"=>"Status Payment","name"=>"status_payment"];
-			$this->col[] = ["label"=>"Status Delivery","name"=>"status_delivery"];
-			$this->col[] = ["label"=>"Pay By","name"=>"pay_by"];
-			$this->col[] = ["label"=>"Driver Name","name"=>"driver_name"];
-			$this->col[] = ["label"=>"Driver Phone","name"=>"driver_phone"];
-			$this->col[] = ["label"=>"Is Cancel","name"=>"is_cancel"];
+			$this->col[] = ["label"=>"Email","name"=>"email"];
+			$this->col[] = ["label"=>"Privileges","name"=>"id_cms_privileges","join"=>"cms_privileges,name"];
 			$this->col[] = ["label"=>"Created At","name"=>"created_at"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Order Date','name'=>'order_date','type'=>'datetime','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Customer','name'=>'customer_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'cms_users,name','datatable_where'=>'id_cms_privileges=4'];
-			$this->form[] = ['label'=>'Receiver Phone','name'=>'receiver_phone','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Address','name'=>'address','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Total Amount','name'=>'total_amount','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Discount Amount','name'=>'discount_amount','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Grand Total','name'=>'grand_total','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Screen Pay','name'=>'screen_pay','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Status Payment','name'=>'status_payment','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Unpaid;Paid'];
-			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Preparing;On The Way;Returned;Delivered'];
-			$this->form[] = ['label'=>'Pay By','name'=>'pay_by','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Cash On Delivery;E-Cash'];
-			$this->form[] = ['label'=>'Note','name'=>'note','type'=>'textarea','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Driver Phone','name'=>'driver_phone','type'=>'text','validation'=>'max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Driver Name','name'=>'driver_name','type'=>'text','validation'=>'max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Is Cancel','name'=>'is_cancel','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'No;Yes'];
+			$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Phone','name'=>'phone','type'=>'text','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Photo','name'=>'photo','type'=>'upload','validation'=>'image','width'=>'col-sm-10','help'=>'File types support : JPG, JPEG, PNG, GIF, BMP'];
+			$this->form[] = ['label'=>'Address','name'=>'address','type'=>'textarea','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','width'=>'col-sm-10','placeholder'=>'Please enter a valid email address'];
+			$this->form[] = ['label'=>'Password','name'=>'password','type'=>'password','validation'=>'min:3|max:32','width'=>'col-sm-10','help'=>'Minimum 5 characters. Please leave empty if you did not change the password.'];
+			$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name','datatable_where'=>'id>1'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Order Date","name"=>"order_date","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Customer Id","name"=>"customer_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"customer,id"];
-			//$this->form[] = ["label"=>"Receiver Phone","name"=>"receiver_phone","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Address","name"=>"address","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Total Amount","name"=>"total_amount","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Discount Amount","name"=>"discount_amount","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Grand Total","name"=>"grand_total","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Screen Pay","name"=>"screen_pay","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Status Payment","name"=>"status_payment","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Status Delivery","name"=>"status_delivery","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Pay By","name"=>"pay_by","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Note","name"=>"note","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
-			//$this->form[] = ["label"=>"Driver Phone","name"=>"driver_phone","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Driver Name","name"=>"driver_name","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Is Cancel","name"=>"is_cancel","type"=>"radio","required"=>TRUE,"validation"=>"required|integer","dataenum"=>"Array"];
-			//$this->form[] = ["label"=>"Created By","name"=>"created_by","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Name","name"=>"name","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
+			//$this->form[] = ["label"=>"Phone","name"=>"phone","type"=>"number","required"=>TRUE,"validation"=>"required|numeric","placeholder"=>"You can only enter the number only"];
+			//$this->form[] = ["label"=>"Photo","name"=>"photo","type"=>"upload","required"=>TRUE,"validation"=>"required|image|max:3000","help"=>"File types support : JPG, JPEG, PNG, GIF, BMP"];
+			//$this->form[] = ["label"=>"Address","name"=>"address","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+			//$this->form[] = ["label"=>"Email","name"=>"email","type"=>"email","required"=>TRUE,"validation"=>"required|min:1|max:255|email|unique:cms_users","placeholder"=>"Please enter a valid email address"];
+			//$this->form[] = ["label"=>"Password","name"=>"password","type"=>"password","required"=>TRUE,"validation"=>"min:3|max:32","help"=>"Minimum 5 characters. Please leave empty if you did not change the password."];
+			//$this->form[] = ["label"=>"Cms Privileges","name"=>"id_cms_privileges","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"cms_privileges,name"];
+			//$this->form[] = ["label"=>"Status","name"=>"status","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 
@@ -292,7 +269,6 @@
 	    */
 	    public function hook_before_add(&$postdata) {        
 	        //Your code here
-			$postdata['created_by'] = CRUDBooster::myId();
 
 	    }
 
