@@ -1988,4 +1988,54 @@ class CRUDBooster
         unset($past_data[$table.'orderby']);
     }
 
+    public static function getValidateFields($fields, $postdata) {
+        $msg_err = array();
+        foreach ($fields as $value) {
+            if (empty($postdata[$value])) {
+                $msg_err[] = 'The '.$value.' field is required';
+            }
+        }
+        return $msg_err;
+    }
+
+    public static function uploadFile2($request, $name, $encrypt = false, $resize_width = null, $resize_height = null, $id = null)
+    {
+        if ($request->hasFile($name)) {
+            if (! self::myId()) {
+                $userID = 0;
+            } else {
+                $userID = self::myId();
+            }
+
+            if ($id) {
+                $userID = $id;
+            }
+
+            $file = $request->file($name);
+            $ext = $file->getClientOriginalExtension();
+            $filename = str_slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            $filesize = $file->getClientSize() / 1024;
+            $file_path = 'uploads/'.$userID.'/'.date('Y-m');
+
+            //Create Directory Monthly
+            Storage::makeDirectory($file_path);
+
+            if ($encrypt == true) {
+                $filename = md5(str_random(5)).'.'.$ext;
+            } else {
+                $filename = str_slug($filename, '_').'.'.$ext;
+            }
+
+            if (Storage::putFileAs($file_path, $file, $filename)) {
+                self::resizeImage($file_path.'/'.$filename, $resize_width, $resize_height);
+
+                return $file_path.'/'.$filename;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
 }

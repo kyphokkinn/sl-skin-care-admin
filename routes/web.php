@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group([
+    'prefix' => env('APP_API'),
+    'namespace' => 'Api'
+], function () {
+    Route::post('/order_list_create', 'ApiOrderCreateController@create_order_with_items');
+
+});
