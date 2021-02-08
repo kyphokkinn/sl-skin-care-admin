@@ -94,7 +94,8 @@
 					$data['data'] = $user;
 				} catch (\Exception $th) {
 					DB::rollback();
-					$data['api_message'] = 'something went wrong during create list order with detail';
+					$data['api_message'] = 'something went wrong during create list order with detail '.$th;
+					CRUDBooster::insertLog('error 101', $th);
 				}
 
 				finish:
