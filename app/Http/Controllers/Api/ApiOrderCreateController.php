@@ -33,7 +33,7 @@
 			{
 				$params = Request::all();
 				$data = array();
-				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date', 'created_by'];
+				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date'];
 				$data['api_status'] = 0;
 				$msg = CRUDBooster::getValidateFields($fields, $params);
 				if (count($msg)>0) {
@@ -50,6 +50,17 @@
 				}
 				DB::beginTransaction();
 				try {
+					$user = null;
+					if (empty($params['customer_id'])) {
+						if ($cus = self::check_user_exist($params['receiver_phone'])) {
+							 $params['customer_id'] = $cus->id;
+							 $params['created_by'] = $cus->id;
+						} else {
+							$user = self::create_user($params);
+							$params['created_by'] = $user->id;
+							$params['customer_id'] = $user->id;
+						}
+					}
 					$order_id = DB::table('tb_order')->insertGetId([
 						'order_date' => $params['order_date'],
 						'customer_id' => $params['customer_id'],
@@ -80,6 +91,7 @@
 					DB::commit();
 					$data['api_status'] = 1;
 					$data['api_message'] = 'success';
+					$data['data'] = $user;
 				} catch (\Exception $th) {
 					DB::rollback();
 					$data['api_message'] = 'something went wrong during create list order with detail';
@@ -87,6 +99,29 @@
 
 				finish:
 				return response()->json($data, 200);
+			}
+
+			public static function check_user_exist($phone) {
+				if (isset($phone)) {
+					$user = DB::table('cms_users')
+						->where('phone', $phone)
+						->first();
+					if ($user) {
+						return $user;
+					}
+				}
+				return false;
+			}
+
+			public static function create_user($params) {
+				$id = DB::table('cms_users')
+					->insertGetId([
+						'name' => $params['receiver_phone'],
+						'phone' => $params['receiver_phone'],
+						'id_cms_privileges' => 4,
+						'address' => $params['address']
+					]);
+				return CRUDBooster::first('cms_users', $id);
 			}
 
 		}
