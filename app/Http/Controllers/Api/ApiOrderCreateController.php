@@ -55,6 +55,7 @@
 						if ($cus = self::check_user_exist($params['receiver_phone'])) {
 							 $params['customer_id'] = $cus->id;
 							 $params['created_by'] = $cus->id;
+							 $user = $cus;
 						} else {
 							$user = self::create_user($params);
 							$params['created_by'] = $user->id;
