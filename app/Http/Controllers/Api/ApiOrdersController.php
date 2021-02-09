@@ -26,7 +26,16 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-
+				if (!empty($postdata['id'])) {
+					$item = $result['data'][0];
+					$item->order_items = DB::table('tb_order_detail')
+						->select('tb_order_detail.*', 'tb_product.title')
+						->join('tb_product', 'tb_product.id', 'tb_order_detail.product_id')
+						->whereNull('tb_order_detail.deleted_at')
+						->where('tb_order_detail.order_id', $item->id)
+						->get();
+					$result['data'] = $item;
+				}
 		    }
 
 		}
