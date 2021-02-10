@@ -23,10 +23,11 @@
 		    public function hook_query(&$query) {
 		        //This method is to customize the sql query
 				if (!empty($this->postdata['user_id'])) {
-					$query->whereRaw('FIND_IN_SET('.$this->postdata['user_id'].',user_id_list)');
+					$query->whereRaw('FIND_IN_SET('.$this->postdata['user_id'].',user_id_list) OR user_id=\''.$this->postdata['user_id'].'\'');
 					unset($this->postdata['user_id']);
 				}
 				$query->where($this->postdata);
+				$query->orWhere('is_all', 'Yes');
 		    }
 
 		    public function hook_after($postdata,&$result) {
