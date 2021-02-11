@@ -26,7 +26,9 @@
 					$query->whereRaw('title LIKE \'%'.$this->postdata['title'].'%\'');
 					unset($this->postdata['title']);
 				}
-				$query->where($this->postdata);
+				if ($this->postdata != null) {
+					$query->where($this->postdata);
+				}
 		    }
 
 		    public function hook_after($postdata,&$result) {
