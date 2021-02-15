@@ -26,7 +26,12 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-
+				if ($result['data'] != null) {
+					$result['data'] = $result['data']->map(function($item,$key){
+						$item->description_text = trim(strip_tags($item->description));
+						return $item;
+					});
+				}
 		    }
 
 		}
