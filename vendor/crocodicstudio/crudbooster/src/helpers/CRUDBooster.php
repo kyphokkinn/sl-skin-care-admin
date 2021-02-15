@@ -93,7 +93,7 @@ class CRUDBooster
         }
     }
 
-    private static function resizeImage($fullFilePath, $resize_width = null, $resize_height = null, $qty = 100, $thumbQty = 75)
+    private static function resizeImage($fullFilePath, $resize_width = null, $resize_height = null, $qty = 75, $thumbQty = 75)
     {
         $images_ext = config('crudbooster.IMAGE_EXTENSIONS', 'jpg,png,gif,bmp');
         $images_ext = explode(',', $images_ext);
