@@ -1243,6 +1243,7 @@ class CRUDBooster
             return 'title , content null !';
         }
 
+        $data['click_action'] = 'FLUTTER_NOTIFICATION_CLICK';
         $apikey = CRUDBooster::getSetting('google_fcm_key');
         $url = 'https://fcm.googleapis.com/fcm/send';
         $fields = [
@@ -1254,6 +1255,7 @@ class CRUDBooster
                 'badge' => 0,
                 'title' => trim(strip_tags($data['title'])),
                 'body' => trim(strip_tags($data['content'])),
+                'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
             ],
             'priority' => 'high',
         ];
