@@ -24,6 +24,19 @@
 						'api_status' => 1,
 						'api_message' => 'success'
 					]);
+				} else {
+					$item = DB::table($this->table)
+						->where('token', $postdata['token'])
+						->first();
+					if ($item) {
+						DB::table($this->table)
+							->where('id', $item->id)
+							->update(['user_id'=>$postdata['user_id']]);
+						$this->output([
+							'api_status' => 1,
+							'api_message' => 'success'
+						]);
+					}
 				}
 		    }
 
