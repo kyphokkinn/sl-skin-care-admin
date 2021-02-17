@@ -247,7 +247,9 @@
 	    */
 	    public function hook_query_index(&$query) {
 	        //Your code here
-	            
+			if (!CRUDBooster::isSuperadmin()) {
+				$query->where('id_cms_privileges', '!=', 1);
+			}
 	    }
 
 	    /*
