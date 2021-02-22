@@ -48,7 +48,7 @@
 			$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			$this->form[] = ['label'=>'Product Set','name'=>'product_set_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_product_set,title'];
 			$this->form[] = ['label'=>'Promotion','name'=>'promotion_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_promotion,title'];
-			$this->form[] = ['label'=>'Link','name'=>'link','type'=>'text','validation'=>'required|url','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
+			$this->form[] = ['label'=>'Link','name'=>'link','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Active;Inactive'];
 			$this->form[] = ['label'=>'Expired Date','name'=>'expired_date','type'=>'date','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
