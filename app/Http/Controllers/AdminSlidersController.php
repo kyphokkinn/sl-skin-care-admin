@@ -33,7 +33,7 @@
 			$this->col[] = ["label"=>"Title","name"=>"title"];
 			$this->col[] = ["label"=>"Photo","name"=>"photo","image"=>true];
 			$this->col[] = ["label"=>"Product","name"=>"product_id","join"=>"tb_product,title"];
-			$this->col[] = ["label"=>"Product Set","name"=>"product_set_id","join"=>"tb_product_set,title"];
+			// $this->col[] = ["label"=>"Product Set","name"=>"product_set_id","join"=>"tb_product_set,title"];
 			$this->col[] = ["label"=>"Promotion","name"=>"promotion_id","join"=>"tb_promotion,title"];
 			$this->col[] = ["label"=>"Status","name"=>"status"];
 			$this->col[] = ["label"=>"Expired Date","name"=>"expired_date"];
@@ -46,7 +46,7 @@
 			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a title'];
 			$this->form[] = ['label'=>'Photo','name'=>'photo','type'=>'upload','validation'=>'image','width'=>'col-sm-10','help'=>'File types support : JPG, JPEG, PNG, GIF, BMP'];
 			$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_product,title'];
-			$this->form[] = ['label'=>'Product Set','name'=>'product_set_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_product_set,title'];
+			// $this->form[] = ['label'=>'Product Set','name'=>'product_set_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_product_set,title'];
 			$this->form[] = ['label'=>'Promotion','name'=>'promotion_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_promotion,title'];
 			$this->form[] = ['label'=>'Link','name'=>'link','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Active;Inactive'];
