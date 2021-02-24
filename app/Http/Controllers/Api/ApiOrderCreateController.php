@@ -4,6 +4,7 @@
 		use Request;
 		use DB;
 		use CRUDBooster;
+		use App\Http\Controllers\AdminOrdersController;
 
 		class ApiOrderCreateController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
@@ -89,6 +90,8 @@
 						);
 					}
 					DB::table('tb_order_detail')->insert($insert_details);
+					AdminOrdersController::update_status($order_id);
+					AdminOrdersController::sendMailOrder($order_id, 'new_order');
 					DB::commit();
 					$data['api_status'] = 1;
 					$data['api_message'] = 'success';

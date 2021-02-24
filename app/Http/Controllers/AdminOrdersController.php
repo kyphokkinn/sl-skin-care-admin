@@ -4,6 +4,7 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+	use App\Http\Controllers\AdminPushnotificationsController;
 
 	class AdminOrdersController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -305,7 +306,8 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-
+			self::update_status($id);
+			self::sendMailOrder($id, 'new_order');
 	    }
 
 	    /* 
@@ -318,7 +320,10 @@
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
 	        //Your code here
-
+			$item = CRUDBooster::first($this->table, $id);
+			if($postdata['status_delivery'] != $item->status_delivery) {
+				self::update_status($id);
+			}
 	    }
 
 	    /* 
@@ -330,7 +335,7 @@
 	    */
 	    public function hook_after_edit($id) {
 	        //Your code here 
-
+			self::sendMailOrder($id, 'update_order');
 	    }
 
 	    /* 
@@ -357,7 +362,49 @@
 
 	    }
 
+		public static function update_status($id) {
+			$item = CRUDBooster::first('tb_order', $id);
+			$insert = null;
+			switch ($item->status_delivery) {
+				case 'On The Way':
+					$insert = [
+						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកចេញតាមផ្លូវ',
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន រៀបចំដឹកចេញទៅហើយ សូមមេត្តារង់ចាំ អ្នកដឹករបស់យើងឈ្មោះ ៖ '.$item->driver_name.' លេខទូរស័ព្ទ ៖ '.$item->driver_phone.' នឹងទំនាក់ទំនងទៅលោកអ្នកក្នុងពេលឆាប់ៗនេះ​ ។ សូមអរគុណ',
+						'is_all' => 'No',
+						'user_id' => $item->customer_id,
+						'user_id_list' => $item->customer_id
+					];
+					break;
+				case 'Delivered':
+					$insert = [
+						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកដល់គោលដៅ',
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន បញ្ជូនដល់គោលដៅ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។',
+						'is_all' => 'No',
+						'user_id' => $item->customer_id,
+						'user_id_list' => $item->customer_id
+					];
+					break;
+				case 'Preparing':
+					$insert = [
+						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដាក់ស្នើរ ក្រុមការងារនឹងរៀបចំឆាប់នេះ',
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។',
+						'is_all' => 'No',
+						'user_id' => $item->customer_id,
+						'user_id_list' => $item->customer_id
+					];
+					break;
+			}
+			if (in_array($item->status_delivery, ['Preparing', 'Delivered', 'On The Way'])) {
+				$notification_id = DB::table('tb_notification')->insertGetId($insert);
+				AdminPushnotificationsController::push_notification($notification_id);
+			}
+		}
 
+		public static function sendMailOrder($id, $template) {
+			$item = CRUDBooster::first('tb_order', $id);
+			CRUDBooster::sendEmail(['to' => 'bunhenglorngdy@gmail.com', 'data'=>$item, 'template'=> $template]);
+			CRUDBooster::sendEmail(['to' => 'phokkinn.ky@gmail.com', 'data'=>$item, 'template'=> $template]);
+		}
 
 	    //By the way, you can still create your own method in here... :) 
 
