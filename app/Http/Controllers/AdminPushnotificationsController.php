@@ -336,6 +336,8 @@
 			if ($item) {
 				$tokens = array();
 				$data = array();
+				$data['title'] = $item->title;
+				$data['content'] = $item->content;
 				if ($item->is_all == "Yes") {
 					$tokens = AdminDeviceTokensController::get_device_tokens();
 				} else {
