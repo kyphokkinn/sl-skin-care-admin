@@ -369,32 +369,28 @@
 				case 'On The Way':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកចេញតាមផ្លូវ',
-						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន រៀបចំដឹកចេញទៅហើយ សូមមេត្តារង់ចាំ អ្នកដឹករបស់យើងឈ្មោះ ៖ '.$item->driver_name.' លេខទូរស័ព្ទ ៖ '.$item->driver_phone.' នឹងទំនាក់ទំនងទៅលោកអ្នកក្នុងពេលឆាប់ៗនេះ​ ។ សូមអរគុណ',
-						'is_all' => 'No',
-						'user_id' => $item->customer_id,
-						'user_id_list' => $item->customer_id
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន រៀបចំដឹកចេញទៅហើយ សូមមេត្តារង់ចាំ អ្នកដឹករបស់យើងឈ្មោះ ៖ '.$item->driver_name.' លេខទូរស័ព្ទ ៖ '.$item->driver_phone.' នឹងទំនាក់ទំនងទៅលោកអ្នកក្នុងពេលឆាប់ៗនេះ​ ។ សូមអរគុណ'
 					];
 					break;
 				case 'Delivered':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកដល់គោលដៅ',
-						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន បញ្ជូនដល់គោលដៅ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។',
-						'is_all' => 'No',
-						'user_id' => $item->customer_id,
-						'user_id_list' => $item->customer_id
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន បញ្ជូនដល់គោលដៅ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
 					];
 					break;
 				case 'Preparing':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដាក់ស្នើរ ក្រុមការងារនឹងរៀបចំឆាប់នេះ',
-						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។',
-						'is_all' => 'No',
-						'user_id' => $item->customer_id,
-						'user_id_list' => $item->customer_id
+						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
 					];
 					break;
 			}
 			if (in_array($item->status_delivery, ['Preparing', 'Delivered', 'On The Way'])) {
+				$insert['is_all'] = 'No';
+				$insert['user_id'] = $item->customer_id;
+				$insert['user_id_list'] = $item->customer_id;
+				$insert['created_by'] = $item->customer_id;
+
 				$notification_id = DB::table('tb_notification')->insertGetId($insert);
 				AdminPushnotificationsController::push_notification($notification_id);
 			}
