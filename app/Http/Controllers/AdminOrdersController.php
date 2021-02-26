@@ -38,7 +38,7 @@
 			$this->col[] = ["label"=>"Address","name"=>"address"];
 			$this->col[] = ["label"=>"Total Amount","name"=>"total_amount"];
 			$this->col[] = ["label"=>"Grand Total","name"=>"grand_total"];
-			$this->col[] = ["label"=>"Screen Pay","name"=>"screen_pay"];
+			$this->col[] = ["label"=>"Screen Pay","name"=>"screen_pay", "image"=>true];
 			$this->col[] = ["label"=>"Status Payment","name"=>"status_payment"];
 			$this->col[] = ["label"=>"Status Delivery","name"=>"status_delivery"];
 			$this->col[] = ["label"=>"Pay By","name"=>"pay_by"];
@@ -283,13 +283,13 @@
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
 	    	//Your code here
-			switch ($column_index) {
-				case 7:
-					if ($column_value) {
-						$column_value = URL::to($column_value);
-					}
-					break;
-			}
+			// switch ($column_index) {
+			// 	case 7:
+			// 		if ($column_value) {
+			// 			$column_value = URL::to($column_value);
+			// 		}
+			// 		break;
+			// }
 		}
 
 	    /*
