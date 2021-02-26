@@ -73,6 +73,7 @@
 						'grand_total' => $params['grand_total'],
 						'screen_pay' => $params['screen_pay'] != null ? CRUDBooster::uploadFile2($request, 'screen_pay') : null,
 						'pay_by' => $params['pay_by']??"Cash",
+						'status_delivery' => $params['status_delivery']??"Preparing",
 						'created_by' => $params['created_by']
 					]);
 					$insert_details = array();

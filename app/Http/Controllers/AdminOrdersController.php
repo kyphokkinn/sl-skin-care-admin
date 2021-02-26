@@ -322,7 +322,9 @@
 	        //Your code here
 			$item = CRUDBooster::first($this->table, $id);
 			if($postdata['status_delivery'] != $item->status_delivery) {
-				self::update_status($id);
+				$this->status_chnage = true;
+			} else {
+				$this->status_chnage= false;
 			}
 	    }
 
@@ -336,6 +338,9 @@
 	    public function hook_after_edit($id) {
 	        //Your code here 
 			self::sendMailOrder($id, 'update_order');
+			if ($this->status_change) {
+				self::update_status($id);
+			}
 	    }
 
 	    /* 
