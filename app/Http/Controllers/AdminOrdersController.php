@@ -4,6 +4,7 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+	use URL;
 	use App\Http\Controllers\AdminPushnotificationsController;
 
 	class AdminOrdersController extends \crocodicstudio\crudbooster\controllers\CBController {
@@ -282,7 +283,14 @@
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
 	    	//Your code here
-	    }
+			switch ($column_index) {
+				case 7:
+					if ($column_value) {
+						$column_value = URL::to($column_value);
+					}
+					break;
+			}
+		}
 
 	    /*
 	    | ---------------------------------------------------------------------- 
@@ -403,6 +411,9 @@
 
 		public static function sendMailOrder($id, $template) {
 			$item = CRUDBooster::first('tb_order', $id);
+			if ($item->screen_pay) {
+				$item->screen_pay = URL::to($item->screen_pay);
+			}
 			CRUDBooster::sendEmail(['to' => 'bunhenglorngdy@gmail.com', 'data'=>$item, 'template'=> $template]);
 			CRUDBooster::sendEmail(['to' => 'phokkinn.ky@gmail.com', 'data'=>$item, 'template'=> $template]);
 		}
