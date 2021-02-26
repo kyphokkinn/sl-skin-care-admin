@@ -91,7 +91,7 @@
 						);
 					}
 					DB::table('tb_order_detail')->insert($insert_details);
-					AdminOrdersController::update_status($order_id);
+					AdminOrdersController::update_status($order_id, 'Preparing');
 					AdminOrdersController::sendMailOrder($order_id, 'new_order');
 					DB::commit();
 					$data['api_status'] = 1;

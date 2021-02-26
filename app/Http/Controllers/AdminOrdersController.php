@@ -314,7 +314,7 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-			self::update_status($id);
+			self::update_status($id, 'Preparing');
 			self::sendMailOrder($id, 'new_order');
 	    }
 
@@ -330,9 +330,7 @@
 	        //Your code here
 			$item = CRUDBooster::first($this->table, $id);
 			if($postdata['status_delivery'] != $item->status_delivery) {
-				$this->status_chnage = true;
-			} else {
-				$this->status_chnage= false;
+				self::update_status($id, $postdata['status_delivery']);
 			}
 	    }
 
@@ -347,7 +345,7 @@
 	        //Your code here 
 			self::sendMailOrder($id, 'update_order');
 			if ($this->status_change) {
-				self::update_status($id);
+				
 			}
 	    }
 
@@ -375,10 +373,10 @@
 
 	    }
 
-		public static function update_status($id) {
+		public static function update_status($id, $status) {
 			$item = CRUDBooster::first('tb_order', $id);
 			$insert = null;
-			switch ($item->status_delivery) {
+			switch ($status) {
 				case 'On The Way':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកចេញតាមផ្លូវ',
@@ -398,7 +396,7 @@
 					];
 					break;
 			}
-			if (in_array($item->status_delivery, ['Preparing', 'Delivered', 'On The Way'])) {
+			if (in_array($status, ['Preparing', 'Delivered', 'On The Way'])) {
 				$insert['is_all'] = 'No';
 				$insert['user_id'] = $item->customer_id;
 				$insert['user_id_list'] = $item->customer_id;

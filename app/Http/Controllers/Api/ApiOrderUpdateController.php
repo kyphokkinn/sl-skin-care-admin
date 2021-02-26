@@ -32,7 +32,7 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
 				if ($this->is_change_status) {
-					AdminOrdersController::update_status($postdata['id']);
+					AdminOrdersController::update_status($postdata['id'], $postdata['status_delivery']);
 				}
 				AdminOrdersController::sendMailOrder($postdata['id'], 'update_order');
 		    }
