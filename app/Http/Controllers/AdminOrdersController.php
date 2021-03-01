@@ -413,7 +413,6 @@
 				$item->screen_pay = URL::to($item->screen_pay);
 			}
 			CRUDBooster::sendEmail(['to' => 'bunhenglorngdy@gmail.com', 'data'=>$item, 'template'=> $template]);
-			CRUDBooster::sendEmail(['to' => 'phokkinn.ky@gmail.com', 'data'=>$item, 'template'=> $template]);
 		}
 
 	    //By the way, you can still create your own method in here... :) 
