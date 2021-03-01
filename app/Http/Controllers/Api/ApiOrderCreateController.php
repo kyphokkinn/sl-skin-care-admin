@@ -91,8 +91,6 @@
 						);
 					}
 					DB::table('tb_order_detail')->insert($insert_details);
-					AdminOrdersController::update_status($order_id, 'Preparing');
-					AdminOrdersController::sendMailOrder($order_id, 'new_order');
 					DB::commit();
 					$data['api_status'] = 1;
 					$data['api_message'] = 'success';
@@ -105,6 +103,21 @@
 
 				finish:
 				return response()->json($data, 200);
+			}
+			
+			public function push_order() {
+				$params = request('order_id');
+				if ($params) {
+					try {
+						AdminOrdersController::sendMailOrder($params, 'new_order');
+						AdminOrdersController::update_status($params, 'Preparing');
+						return response()->json(['api_status'=>1,'api_message'=>'success'], 200);
+					} catch (\Exception $th) {
+						return response()->json(['api_status'=>0,'api_message'=>'failed to push '.$th], 200);
+					}
+				}
+				
+				return response()->json(['api_status'=>0,'api_message'=>'order_id field is required!'], 200);
 			}
 
 			public static function check_user_exist($phone) {

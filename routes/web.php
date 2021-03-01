@@ -20,5 +20,6 @@ Route::group([
     'namespace' => 'Api'
 ], function () {
     Route::post('/order_list_create', 'ApiOrderCreateController@create_order_with_items');
+    Route::post('/push_notification_order', 'ApiOrderCreateController@push_order');
 
 });

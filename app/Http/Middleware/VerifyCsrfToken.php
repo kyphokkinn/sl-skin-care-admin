@@ -17,6 +17,7 @@ class VerifyCsrfToken extends BaseVerifier
         parent::__construct($app, $encrypter);
         $this->except = [
             env('APP_API').'/order_list_create',
+            env('APP_API').'/push_notification_order',
         ];
     }
 }
