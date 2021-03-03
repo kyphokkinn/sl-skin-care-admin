@@ -106,11 +106,29 @@
 			}
 			
 			public function push_order() {
-				$params = request('order_id');
-				if ($params) {
+				$order_id = request('order_id');
+				if ($order_id) {
 					try {
-						AdminOrdersController::sendMailOrder($params, 'new_order');
-						AdminOrdersController::update_status($params, 'Preparing');
+						if (!empty(request('token'))) {
+							$item = CRUDBooster::first('tb_order', $order_id);
+							$insert = [
+								'title' => 'ការបញ្ជាទិញលេខ #'.$order_id.' ត្រូវបានដាក់ស្នើរ ក្រុមការងារនឹងរៀបចំឆាប់នេះ',
+								'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
+							];
+							$insert['is_all'] = 'No';
+							$insert['user_id'] = $item->customer_id;
+							$insert['user_id_list'] = $item->customer_id;
+							$insert['created_by'] = $item->customer_id;
+
+							$notification_id = DB::table('tb_notification')->insertGetId($insert);
+							AdminPushnotificationsController::push_notification($notification_id);
+							DB::table('tb_device_token')
+								->where('token', request('token'))
+								->update(['user_id'=>$item->customer_id]);
+						} else {
+							AdminOrdersController::update_status($order_id, 'Preparing');
+						}
+						AdminOrdersController::sendMailOrder($order_id, 'new_order');
 						return response()->json(['api_status'=>1,'api_message'=>'success'], 200);
 					} catch (\Exception $th) {
 						return response()->json(['api_status'=>0,'api_message'=>'failed to push '.$th], 200);
