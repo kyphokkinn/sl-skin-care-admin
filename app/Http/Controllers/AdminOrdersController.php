@@ -32,6 +32,7 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
+			$this->col[] = ["label"=>"Order ID","name"=>"id"];
 			$this->col[] = ["label"=>"Order Date","name"=>"order_date"];
 			$this->col[] = ["label"=>"Customer","name"=>"customer_id","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Receiver Phone","name"=>"receiver_phone"];
@@ -289,13 +290,13 @@
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
 	    	//Your code here
-			// switch ($column_index) {
-			// 	case 7:
-			// 		if ($column_value) {
-			// 			$column_value = URL::to($column_value);
-			// 		}
-			// 		break;
-			// }
+			switch ($column_index) {
+				case 1:
+					if ($column_value) {
+						$column_value = "<a target=\"_blank\" href=".CRUDBooster::adminPath('order_details?filter_column%5Btb_order.id%5D%5Btype%5D=%3D&filter_column%5Btb_order.id%5D%5Bvalue%5D='.$column_value.'&filter_column%5Btb_order.id%5D%5Bsorting%5D=&filter_column%5Btb_product.title%5D%5Btype%5D=&filter_column%5Btb_product.title%5D%5Bsorting%5D=&filter_column%5Btb_order_detail.qty%5D%5Btype%5D=&filter_column%5Btb_order_detail.qty%5D%5Bsorting%5D=&filter_column%5Btb_order_detail.price%5D%5Btype%5D=&filter_column%5Btb_order_detail.price%5D%5Bsorting%5D=&filter_column%5Btb_order_detail.amount%5D%5Btype%5D=&filter_column%5Btb_order_detail.amount%5D%5Bsorting%5D=&filter_column%5Btb_order_detail.total_amount%5D%5Btype%5D=&filter_column%5Btb_order_detail.total_amount%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order_detail.created_at%5D%5Btype%5D=&filter_column%5Btb_order_detail.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forder_details').">$column_value</a>";
+					}
+					break;
+			}
 		}
 
 	    /*
