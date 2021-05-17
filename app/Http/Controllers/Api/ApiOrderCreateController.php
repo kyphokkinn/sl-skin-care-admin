@@ -34,7 +34,7 @@
 			{
 				$params = Request::all();
 				$data = array();
-				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date'];
+				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date', 'delivery_id'];
 				$data['api_status'] = 0;
 				$msg = CRUDBooster::getValidateFields($fields, $params);
 				if (count($msg)>0) {
@@ -63,10 +63,14 @@
 							$params['customer_id'] = $user->id;
 						}
 					}
+					$fee = CRUDBooster::first('tb_delivery_fee', $params['delivery_id']);
 					$order_id = DB::table('tb_order')->insertGetId([
 						'order_date' => $params['order_date'],
 						'customer_id' => $params['customer_id'],
 						'receiver_phone' => $params['receiver_phone'],
+						'delivery_id' => $params['delivery_id'],
+						'delivery_fee' => ($fee ? $fee->fee : null),
+						'payment_id' => $params['payment_id'],
 						'address' => $params['address'],
 						'total_amount' => $params['total_amount'],
 						'discount_amount' => $params['discount_amount']??0,
@@ -81,7 +85,7 @@
 						$insert_details[] = array(
 							'order_id' => $order_id,
 							'product_id' => $value['product_id']??NULL,
-							'product_set_id' => $value['product_set_id']??NULL,
+							'promotion_id' => $value['promotion_id']??NULL,
 							'price' => $value['price'],
 							'qty' => $value['qty'],
 							'amount' => $value['amount'],
@@ -154,7 +158,7 @@
 			public static function create_user($params) {
 				$id = DB::table('cms_users')
 					->insertGetId([
-						'name' => $params['receiver_phone'],
+						'name' => $params['receiver_name']??$params['receiver_phone'],
 						'phone' => $params['receiver_phone'],
 						'id_cms_privileges' => 4,
 						'address' => $params['address']

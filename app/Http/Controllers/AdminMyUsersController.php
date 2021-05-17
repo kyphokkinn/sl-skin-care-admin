@@ -47,7 +47,7 @@
 			$this->form[] = ['label'=>'Address','name'=>'address','type'=>'textarea','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','width'=>'col-sm-10','placeholder'=>'Please enter a valid email address'];
 			$this->form[] = ['label'=>'Password','name'=>'password','type'=>'password','validation'=>'min:3|max:32','width'=>'col-sm-10','help'=>'Minimum 5 characters. Please leave empty if you did not change the password.'];
-			$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name','datatable_where'=>'id>1'];
+			$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name','datatable_where'=>'id NOT IN (1,4)'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -248,7 +248,7 @@
 	    public function hook_query_index(&$query) {
 	        //Your code here
 			if (!CRUDBooster::isSuperadmin()) {
-				$query->where('id_cms_privileges', '!=', 1);
+				$query->whereNotIn('id_cms_privileges', [1,4]);
 			}
 	    }
 

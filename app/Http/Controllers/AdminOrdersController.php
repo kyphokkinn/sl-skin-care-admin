@@ -55,6 +55,7 @@
 			$this->form[] = ['label'=>'Customer','name'=>'customer_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'cms_users,name','datatable_where'=>'id_cms_privileges=4'];
 			$this->form[] = ['label'=>'Receiver Phone','name'=>'receiver_phone','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Address','name'=>'address','type'=>'text','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Delivery Fee','name'=>'delivery_id','type'=>'select2','width'=>'col-sm-10', 'datatable'=>'tb_delivery_fee,title', 'datatable_format'=>'title,\' | $\',fee'];
 			$this->form[] = ['label'=>'Total Amount','name'=>'total_amount','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Discount Amount','name'=>'discount_amount','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Grand Total','name'=>'grand_total','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
@@ -62,6 +63,7 @@
 			$this->form[] = ['label'=>'Status Payment','name'=>'status_payment','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Unpaid;Paid'];
 			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Preparing;On The Way;Returned;Delivered'];
 			$this->form[] = ['label'=>'Pay By','name'=>'pay_by','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Cash On Delivery;E-Cash'];
+			$this->form[] = ['label'=>'Bank','name'=>'payment_id','type'=>'image','width'=>'col-sm-5','datatable'=>'tb_payment_method,photo'];
 			$this->form[] = ['label'=>'Note','name'=>'note','type'=>'textarea','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Driver Phone','name'=>'driver_phone','type'=>'text','validation'=>'max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Driver Name','name'=>'driver_name','type'=>'text','validation'=>'max:255','width'=>'col-sm-10'];
