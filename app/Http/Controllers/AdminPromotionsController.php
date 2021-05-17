@@ -303,7 +303,9 @@
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
 	        //Your code here
-
+			if($postdata['product_ids'])
+				$postdata['product_ids'] = implode(",", $postdata['product_ids']);
+			self::edit_promotion_has_product($id, $postdata);
 	    }
 
 	    /* 
@@ -345,25 +347,60 @@
 		public static function add_promotion_has_product($promotion_id) {
 			$item = CRUDBooster::first('tb_promotion', $promotion_id);
 			if ($item->product_ids) {
-				$qtys = explode(",", $item->qtys);
-				$isOne = count($qtys) == 1 ? true : false;
-				$products = explode(',', $item->product_ids);
-				$promo_has_prod = array();
-				foreach($products as $index => $pro) {
-					$promo_has_prod[] = [
-						'product_id' => $pro,
-						'qty' => $isOne ? $item->qtys : $qtys[$index],
-						'promotion_id' => $promotion_id,
-						'created_by' => CRUDBooster::myId()
-					];
-				}
-				
-				if (!empty($promo_has_prod)) {
-					return DB::table('tb_promotion_has_product')
-								->insert($promo_has_prod);
-				}
+				return self::add_item_has_product($promotion_id, $item->product_ids, $item->qtys);
 			}
 			return false;
+		}
+
+		public static function edit_promotion_has_product($promotion_id, $postdata) {
+			$item = CRUDBooster::first('tb_promotion', $promotion_id);
+			if ($item->product_ids != $postdata['product_ids'] || $item->qtys != $postdata['qtys']) {
+				try {
+					DB::beginTransaction();
+					$order_item = DB::table('tb_order_detail')
+						->where('promotion_id', $promotion_id)
+						->first();
+					if ($order_item) {
+						DB::table('tb_promotion_has_product')
+							->where('promotion_id', $promotion_id)
+							->update(['deleted_at'=>date('Y-m-d H:i:s')]);
+					} else {
+						DB::table('tb_promotion_has_product')
+							->where('promotion_id', $promotion_id)
+							->delete();
+					}
+					$isAdd = self::add_item_has_product($promotion_id, $postdata['product_ids'], $postdata['qtys']);
+					if (!$isAdd) {
+						DB::rollback();
+						$message = ['Cannot update promotion', 'Please re-fill again with good data'];
+						CRUDBooster::redirectBack(implode("<br>", $message));
+					}
+					DB::commit();
+				} catch (\Exception $th) {
+					DB::rollback();
+					$message = ['Cannot update promotion', 'Please re-fill again with good data'];
+						CRUDBooster::redirectBack(implode("<br>", $message));
+				}
+			}
+		}
+
+		public static function add_item_has_product($promotion_id, $product_ids, $qty) {
+			$qtys = explode(",", $qty);
+			$isOne = count($qtys) == 1 ? true : false;
+			$products = explode(',', $product_ids);
+			$promo_has_prod = array();
+			foreach($products as $index => $pro) {
+				$promo_has_prod[] = [
+					'product_id' => $pro,
+					'qty' => $isOne ? $qty : $qtys[$index],
+					'promotion_id' => $promotion_id,
+					'created_by' => CRUDBooster::myId()
+				];
+			}
+			if (!empty($promo_has_prod)) {
+				return DB::table('tb_promotion_has_product')
+					->insert($promo_has_prod);
+			}
 		}
 
 
