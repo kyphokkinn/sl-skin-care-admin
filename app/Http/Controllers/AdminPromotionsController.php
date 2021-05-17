@@ -42,7 +42,9 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a title'];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a price', 'help' => 'ex. តម្លៃក្នុងមួយឈុត 25USD'];
+			$this->form[] = ['label'=>'Product','name'=>'product_ids','type'=>'select2multi','width'=>'col-sm-10','datatable'=>'tb_product,title'];
+			$this->form[] = ['label'=>'Qty','name'=>'qtys','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter qty separate by comma ","', 'help'=> 'ex. "3,2,1" if the same qty "3"'];
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Thumbnail','name'=>'thumbnail','type'=>'upload','validation'=>'image','width'=>'col-sm-10','help'=>'File types support : JPG, JPEG, PNG, GIF, BMP'];
 			$this->form[] = ['label'=>'Start Date','name'=>'start_date','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
@@ -269,6 +271,8 @@
 	    public function hook_before_add(&$postdata) {        
 	        //Your code here
 			$postdata['created_by'] = CRUDBooster::myId();
+			if($postdata['product_ids'])
+				$postdata['product_ids'] = implode(",", $postdata['product_ids']);
 
 	    }
 
@@ -281,7 +285,12 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-
+			$add = self::add_promotion_has_product($id);
+			if (!$add) {
+				DB::table($this->table)->where('id', $id)->delete();
+				$message = ['Promotion cannot create', 'Please re-fill again with good data'];
+				CRUDBooster::redirectBack(implode("<br>", $message));
+			}
 	    }
 
 	    /* 
@@ -332,6 +341,30 @@
 	        //Your code here
 
 	    }
+
+		public static function add_promotion_has_product($promotion_id) {
+			$item = CRUDBooster::first('tb_promotion', $promotion_id);
+			if ($item->product_ids) {
+				$qtys = explode(",", $item->qtys);
+				$isOne = count($qtys) == 1 ? true : false;
+				$products = explode(',', $item->product_ids);
+				$promo_has_prod = array();
+				foreach($products as $index => $pro) {
+					$promo_has_prod[] = [
+						'product_id' => $pro,
+						'qty' => $isOne ? $item->qtys : $qtys[$index],
+						'promotion_id' => $promotion_id,
+						'created_by' => CRUDBooster::myId()
+					];
+				}
+				
+				if (!empty($promo_has_prod)) {
+					return DB::table('tb_promotion_has_product')
+								->insert($promo_has_prod);
+				}
+			}
+			return false;
+		}
 
 
 
