@@ -33,7 +33,16 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-
+				if (!empty($result['data'])) {
+					foreach($result['data'] as $item) {
+						$item->price_config = DB::table('tb_price_config')
+							->selectRaw('id,product_id,from_item,to_item,price')
+							->whereNull('deleted_at')
+							->where('product_id', $item->id)
+							->where('status', 1)
+							->get();
+					}
+				}
 		    }
 
 		}
