@@ -46,8 +46,10 @@
 			$this->form[] = ['label'=>'Category','name'=>'category_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_category,name'];
 			$this->form[] = ['label'=>'Image Path','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a title'];
-			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Benefit','name'=>'benefit','type'=>'text','width'=>'col-sm-10','placeholder'=>'enter benefit and separate by comma ,', 'help'=>'ex. ជួយអោយសលឿន,បន្តឹងស្បែក'];
+			$this->form[] = ['label'=>'Overview','name'=>'overview','type'=>'text','width'=>'col-sm-10','placeholder'=>'enter short description about product', 'help'=>'ex. ប្រើភ្លាមស្អាតភ្លាម'];
+			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Price On Sale','name'=>'price_on_sale','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
