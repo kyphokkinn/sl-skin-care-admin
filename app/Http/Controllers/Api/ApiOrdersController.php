@@ -29,8 +29,9 @@
 				if (!empty($postdata['id'])) {
 					$item = $result['data'][0];
 					$item->order_items = DB::table('tb_order_detail')
-						->select('tb_order_detail.*', 'tb_product.title')
-						->join('tb_product', 'tb_product.id', 'tb_order_detail.product_id')
+						->select('tb_order_detail.*', 'tb_product.title as product_title', 'tb_promotion.title as promotion_title')
+						->leftJoin('tb_product', 'tb_product.id', 'tb_order_detail.product_id')
+						->leftJoin('tb_promotion', 'tb_promotion.id', 'tb_order_detail.promotion_id')
 						->whereNull('tb_order_detail.deleted_at')
 						->where('tb_order_detail.order_id', $item->id)
 						->get();
