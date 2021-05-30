@@ -41,6 +41,21 @@
 							->where('product_id', $item->id)
 							->where('status', 1)
 							->get();
+						$item->selected_price = $item->price;
+						if ($item->price_on_sale) {
+							$item->selected_price = $item->price_on_sale;
+							if (!(empty($item->on_sale_start) || empty($item->on_sale_end))) {
+								$current = date('Y-m-d');
+								$current = date('Y-m-d', strtotime($current));
+								$start_date = date('Y-m-d', strtotime($item->on_sale_start));
+								$end_date = date('Y-m-d', strtotime($item->on_sale_end));
+								if (($current >= $start_date) && ($current <= $end_date)){
+									$item->selected_price = $item->price_on_sale;
+								} else {
+									$item->selected_price = $item->price;
+								}
+							}
+						}
 					}
 				}
 		    }
