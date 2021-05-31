@@ -31,6 +31,23 @@
 						$item->description_text = trim(strip_tags($item->description));
 						return $item;
 					});
+					if (!empty($postdata['id']) && count($result['data']) > 0) {
+						$result['data'][0]->products = DB::table('tb_promotion_has_product')
+							->selectRaw("tb_product.*,tb_promotion_has_product.qty as promote_qty")
+							->join("tb_product", "tb_product.id", "tb_promotion_has_product.product_id")
+							->whereNull('tb_product.deleted_at')
+							->whereNull('tb_promotion_has_product.deleted_at')
+							->where("tb_promotion_has_product.promotion_id", $postdata['id'])
+							->get();
+						if ($result['data'][0]->products->count() > 0) {
+							$result['data'][0]->products->map(function($item) {
+								if ($item->image_path) {
+									$item->image_path = url($item->image_path);
+								}
+								return $item;
+							});
+						}
+					}
 				}
 		    }
 
