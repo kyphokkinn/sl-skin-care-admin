@@ -31,6 +31,7 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Price","name"=>"price"];
 			$this->col[] = ["label"=>"Description","name"=>"description"];
 			$this->col[] = ["label"=>"Thumbnail","name"=>"thumbnail","image"=>true];
 			$this->col[] = ["label"=>"Start Date","name"=>"start_date"];
@@ -43,6 +44,7 @@
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a price', 'help' => 'ex. តម្លៃក្នុងមួយឈុត 25USD'];
+			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10','placeholder'=>'enter promotion price'];
 			$this->form[] = ['label'=>'Product','name'=>'product_ids','type'=>'select2multi','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			$this->form[] = ['label'=>'Qty','name'=>'qtys','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter qty separate by comma ","', 'help'=> 'ex. "3,2,1" if the same qty "3"'];
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
