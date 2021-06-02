@@ -68,6 +68,7 @@
 						'order_date' => $params['order_date'],
 						'customer_id' => $params['customer_id'],
 						'receiver_phone' => $params['receiver_phone'],
+						'receiver_name' => $params['receiver_name'],
 						'delivery_id' => $params['delivery_id'],
 						'delivery_fee' => ($fee ? $fee->fee : null),
 						'payment_id' => $params['payment_id'],
