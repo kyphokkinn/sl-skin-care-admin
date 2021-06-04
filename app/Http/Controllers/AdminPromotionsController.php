@@ -52,6 +52,7 @@
 			$this->form[] = ['label'=>'Start Date','name'=>'start_date','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'End Date','name'=>'end_date','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'Active;Inactive'];
+			$this->form[] = ['label'=>'Position','name'=>'position','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'left;right'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
