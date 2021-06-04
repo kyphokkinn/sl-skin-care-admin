@@ -127,7 +127,7 @@
 							$insert['created_by'] = $item->customer_id;
 
 							$notification_id = DB::table('tb_notification')->insertGetId($insert);
-							AdminPushnotificationsController::push_notification($notification_id);
+							AdminPushnotificationsController::push_notification($notification_id, $order_id);
 							DB::table('tb_device_token')
 								->where('token', request('token'))
 								->update(['user_id'=>$item->customer_id]);

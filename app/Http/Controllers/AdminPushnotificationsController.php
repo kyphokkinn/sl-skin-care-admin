@@ -330,12 +330,15 @@
 	    }
 
 
-		public static function push_notification($id)
+		public static function push_notification($id, $order_id=null)
 		{
 			$item = CRUDBooster::first('tb_notification', $id);
 			if ($item) {
 				$tokens = array();
 				$data = array();
+				if ($order_id) {
+					$data['order_id'] = $order_id;
+				}
 				$data['title'] = $item->title;
 				$data['content'] = $item->content;
 				if ($item->is_all == "Yes") {
