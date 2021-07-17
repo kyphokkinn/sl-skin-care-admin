@@ -27,6 +27,10 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
 				$item = CRUDBooster::first($this->table, $result['id']);
+				$item->chat_id = 'C'.$item->id;
+				if ($item->id_cms_privileges != 4) {
+					$item->chat_id = 'SL168';
+				}
 				if ($item->photo) {
 					$item->photo = url($item->photo);
 				}
