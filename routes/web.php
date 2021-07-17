@@ -23,3 +23,6 @@ Route::group([
     Route::post('/push_notification_order', 'ApiOrderCreateController@push_order');
 
 });
+
+Route::get('/admin/daily-report', 'ReportController@index');
+Route::get('/admin/monthly-report', 'ReportController@monthly');
