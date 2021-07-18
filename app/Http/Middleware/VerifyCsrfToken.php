@@ -18,6 +18,7 @@ class VerifyCsrfToken extends BaseVerifier
         $this->except = [
             env('APP_API').'/order_list_create',
             env('APP_API').'/push_notification_order',
+            env('APP_API').'/push_message',
         ];
     }
 }

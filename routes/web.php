@@ -21,8 +21,9 @@ Route::group([
 ], function () {
     Route::post('/order_list_create', 'ApiOrderCreateController@create_order_with_items');
     Route::post('/push_notification_order', 'ApiOrderCreateController@push_order');
-
 });
 
 Route::get('/admin/daily-report', 'ReportController@index');
 Route::get('/admin/monthly-report', 'ReportController@monthly');
+
+Route::post(env('APP_API').'/push_message', 'AdminPushnotificationsController@pushMessage');

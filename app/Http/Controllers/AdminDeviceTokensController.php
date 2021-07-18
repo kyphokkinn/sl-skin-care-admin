@@ -337,6 +337,16 @@
 			];
 		}
 
+		public static function get_token_sl168() {
+			$items = DB::table('tb_device_token')
+				->select('token', 'user_id')
+				->join('cms_users', 'cms_users.id', 'tb_device_token.user_id')
+				->whereIn('cms_users.id_cms_privileges', [2,3])
+				->where('tb_device_token.status', 'Active')
+				->get()->pluck('token');
+			return $items;
+		}
+
 	    //By the way, you can still create your own method in here... :) 
 
 

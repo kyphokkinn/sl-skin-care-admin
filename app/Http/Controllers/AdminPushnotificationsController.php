@@ -5,6 +5,7 @@
 	use DB;
 	use CRUDBooster;
 	use App\Http\Controllers\AdminDeviceTokensController;
+	use App\UserModel;
 
 	class AdminPushnotificationsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -353,6 +354,39 @@
 					]);
 				$send = CRUDBooster::sendFCM($tokens['token'], $data);
 			}
+		}
+
+		public function pushMessage() {
+			$params = Request::all();
+			$data = array('api_status'=> 0, 'api_message' => 'token not found');
+			$msg = CRUDBooster::getValidateFields(['to', 'from', 'lang', 'type'], $params);
+			if (count($msg) > 0) {
+				$data['api_message'] = implode(',', $msg);
+				return response()->json($data);
+			}
+			$from = UserModel::find($params['from']);
+			\App::setLocale($params['lang']??'en');
+			$from_name = $from->name;
+			if ($params['type'] == "C") {
+				// send to staff
+				$tokens = AdminDeviceTokensController::get_token_sl168();
+			} else {
+				// staff send to customer
+				$from_name = "SL168";
+				$to = UserModel::find($params['to']);
+				$tokens = $to->tokens->reject(function($item) {
+					return $item->status != "Active";
+				})->pluck('token');
+			}
+			$title = trans("custom.title_message");
+			$content = trans("custom.content_message", ['name' => $from_name]);
+			if ($tokens->count() > 0) {
+				$data['api_status'] = 1;
+				$data['api_message'] = 'success';
+				CRUDBooster::sendFCM($tokens, ['title' => $title, 'content' => $content]);
+			}
+
+			return response()->json($data);
 		}
 
 	    //By the way, you can still create your own method in here... :) 
