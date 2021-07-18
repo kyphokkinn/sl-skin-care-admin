@@ -150,7 +150,7 @@
 						->where('phone', $phone)
 						->first();
 					if ($user) {
-						return $user;
+						return CRUDBooster::getUserItem($user);
 					}
 				}
 				return false;
@@ -164,7 +164,7 @@
 						'id_cms_privileges' => 4,
 						'address' => $params['address']
 					]);
-				return CRUDBooster::first('cms_users', $id);
+				return CRUDBooster::getUserItem(CRUDBooster::first('cms_users', $id));
 			}
 
 		}
