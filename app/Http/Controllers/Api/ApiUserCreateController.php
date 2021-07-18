@@ -17,6 +17,23 @@
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
 				$postdata['id_cms_privileges'] = 4; // privilage for customer = 4
+				if (!empty($postdata['phone'])) {
+					$user = DB::table($this->table)
+						->where('phone', $postdata['phone'])
+						->first();
+					if ($user) {
+						DB::table($this->table)
+							->where('id', $user->id)
+							->update($postdata);
+						$item = CRUDBooster::first($this->table, $user->id);
+						$this->output([
+							'api_status' => 1,
+							'api_message' => 'success',
+							'data' => CRUDBooster::getUserItem($item)
+						]);
+				
+					}
+				}
 		    }
 
 		    public function hook_query(&$query) {
@@ -27,14 +44,7 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
 				$item = CRUDBooster::first($this->table, $result['id']);
-				$item->chat_id = 'C'.$item->id;
-				if ($item->id_cms_privileges != 4) {
-					$item->chat_id = 'SL168';
-				}
-				if ($item->photo) {
-					$item->photo = url($item->photo);
-				}
-				$result['data'] = $item;
+				$result['data'] = CRUDBooster::getUserItem($item);
 		    }
 
 		}

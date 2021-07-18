@@ -2040,4 +2040,15 @@ class CRUDBooster
         }
     }
 
+    public static function getUserItem($item) {
+        $item->chat_id = 'C'.$item->id;
+        if ($item->id_cms_privileges != 4) {
+            $item->chat_id = 'SL168';
+        }
+        if ($item->photo) {
+            $item->photo = url($item->photo);
+        }
+        return $item;
+    }
+
 }

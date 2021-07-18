@@ -28,11 +28,7 @@
 		        //This method will be execute after run the main process
 				if ($result['data'] != null) {
 					$data = collect($result['data'])->map(function($item) {
-						$item->chat_id = 'C'.$item->id;
-						if ($item->id_cms_privileges != 4) {
-							$item->chat_id = 'SL168';
-						}
-						return $item;
+						return CRUDBooster::getUserItem($item);
 					})->all();
 					$result['data'] = $data;
 				}
