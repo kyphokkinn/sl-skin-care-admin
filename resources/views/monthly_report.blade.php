@@ -70,6 +70,12 @@
                         <?php $month++?>
                         </tr>
                         @endwhile
+                        <tr class="bg-green">
+                            <td class="text-center">***</td>
+                            <td class="text-center">Total : </td>
+                            <td class="text-center">{{number_format($orders->sum('total_order'))}}</td>
+                            <td class="text-center">{{number_format($orders->sum('sum_grand_total'), 2)}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

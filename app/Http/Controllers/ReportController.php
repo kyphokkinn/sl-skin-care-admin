@@ -37,7 +37,7 @@ class ReportController extends Controller
             $year = $yearMonth[1] ?? date("Y");
             $month = $yearMonth[0] ?? date("m");
         }
-        $month = '02';
+        // $month = '02';
         $last_date = date('Y-m-t', strtotime($year.'-'.$month.'-01'));
         $lastday = explode('-', $last_date)[2];
         $orders = new OrderModel();
