@@ -34,7 +34,7 @@
 			{
 				$params = Request::all();
 				$data = array();
-				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date', 'delivery_id'];
+				$fields = ['receiver_phone', 'total_amount', 'grand_total', 'order_items', 'order_date', 'delivery_id', 'token'];
 				$data['api_status'] = 0;
 				$msg = CRUDBooster::getValidateFields($fields, $params);
 				if (count($msg)>0) {
@@ -164,6 +164,11 @@
 						'id_cms_privileges' => 4,
 						'address' => $params['address']
 					]);
+					DB::table('tb_device_token')->insert([
+							'user_id' => $id,
+							'token' => $params['token'],
+							'status' => 'Active'
+						]);
 				return CRUDBooster::getUserItem(CRUDBooster::first('cms_users', $id));
 			}
 
