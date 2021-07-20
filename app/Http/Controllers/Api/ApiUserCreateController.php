@@ -43,6 +43,7 @@
 				
 					}
 				}
+				unset($postdata['token']);
 		    }
 
 		    public function hook_query(&$query) {
