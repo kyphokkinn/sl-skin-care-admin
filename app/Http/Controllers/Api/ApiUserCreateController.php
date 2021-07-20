@@ -29,7 +29,7 @@
 								->where('user_id', $user->id)
 								->update(['token' => $postdata['token']]);
 						}
-						unset($postdata['token']);
+						unset($postdata['token'], $postdata['id']);
 						DB::table($this->table)
 							->where('id', $user->id)
 							->update($postdata);
