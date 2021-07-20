@@ -383,7 +383,7 @@
 			if ($tokens->count() > 0) {
 				$data['api_status'] = 1;
 				$data['api_message'] = 'success';
-				CRUDBooster::sendFCM($tokens, ['title' => $title, 'content' => $content]);
+				CRUDBooster::sendFCM($tokens, ['title' => $title, 'content' => $content, 'type' => 'chat']);
 			}
 
 			return response()->json($data);
