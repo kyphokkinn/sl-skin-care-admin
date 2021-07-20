@@ -16,7 +16,12 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-
+				if (!empty($postdata['token'])) {
+					DB::table('tb_device_token')
+						->where('user_id', $postdata['id'])
+						->update(['token'=>$postdata['token']]);
+				}
+				unset($postdata['token']);
 		    }
 
 		    public function hook_query(&$query) {
