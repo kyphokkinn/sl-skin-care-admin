@@ -5,6 +5,7 @@
 	use DB;
 	use CRUDBooster;
 	use URL;
+	use App\OrderModel;
 	use App\Http\Controllers\AdminPushnotificationsController;
 
 	class AdminOrdersController extends \crocodicstudio\crudbooster\controllers\CBController {
@@ -418,7 +419,19 @@
 		}
 
 		public static function sendMailOrder($id, $template) {
-			$item = CRUDBooster::first('tb_order', $id);
+			$item = OrderModel::find($id);
+			// $item = OrderModel::find(87);
+			$item->detail = "";
+			foreach($item->orderItems as $key => $detail) {
+				$title = "";
+				if ($detail->product) {
+					$title = $detail->product->title;
+				}
+				if($detail->promotion) {
+					$title = $detail->promotion->title;
+				}
+				$item->detail .= ($key+1)." | ឈ្មោះ ៖ ". $title . ' | ចំនួន ៖ '.$detail->qty . '<br>';
+			}
 			if ($item->screen_pay) {
 				$item->screen_pay = URL::to($item->screen_pay);
 			}

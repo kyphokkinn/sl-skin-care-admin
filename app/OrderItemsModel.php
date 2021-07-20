@@ -12,5 +12,15 @@ class OrderItemsModel extends Model
     {
         return $this->belongsTo('App\OrderModel', 'order_id');
     }
+
+    public function product() 
+    {
+        return $this->hasOne('App\ProductModel', 'id', 'product_id');
+    }
+
+    public function promotion() 
+    {
+        return $this->hasOne('App\PromotionModel', 'id', 'promotion_id');
+    }
     
 }
