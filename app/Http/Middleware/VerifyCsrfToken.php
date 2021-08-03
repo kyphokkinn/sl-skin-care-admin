@@ -19,6 +19,7 @@ class VerifyCsrfToken extends BaseVerifier
             env('APP_API').'/order_list_create',
             env('APP_API').'/push_notification_order',
             env('APP_API').'/push_message',
+            env('APP_API').'/logout',
         ];
     }
 }

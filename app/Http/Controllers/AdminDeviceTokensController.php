@@ -321,6 +321,18 @@
 
 	    }
 
+		public function logout() {
+			$params = Request::all();
+
+			$data = array('api_status' => 0, 'api_message' => 'user_id is required');
+			if (!empty($params['user_id'])) {
+				$data = array('api_status' => 1, 'api_message' => 'success');
+			}
+
+			return response()->json($data);
+			
+		}
+
 
 		public static function get_device_tokens($id=0)
 		{

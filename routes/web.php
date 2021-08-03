@@ -27,3 +27,4 @@ Route::get('/admin/daily-report', 'ReportController@index');
 Route::get('/admin/monthly-report', 'ReportController@monthly');
 
 Route::post(env('APP_API').'/push_message', 'AdminPushnotificationsController@pushMessage');
+Route::post(env('APP_API').'/logout', 'AdminDeviceTokensController@logout');
