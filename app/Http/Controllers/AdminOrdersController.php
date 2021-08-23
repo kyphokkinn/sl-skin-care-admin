@@ -40,7 +40,7 @@
 			$this->col[] = ["label"=>"Address","name"=>"address"];
 			$this->col[] = ["label"=>"Total Amount","name"=>"total_amount"];
 			$this->col[] = ["label"=>"Grand Total","name"=>"grand_total"];
-			$this->col[] = ["label"=>"Screen Pay","name"=>"screen_pay", "image"=>true];
+			$this->col[] = ["label"=>"Screen Pay","name"=>"screen_pay","image"=>true];
 			$this->col[] = ["label"=>"Status Payment","name"=>"status_payment"];
 			$this->col[] = ["label"=>"Status Delivery","name"=>"status_delivery"];
 			$this->col[] = ["label"=>"Pay By","name"=>"pay_by"];

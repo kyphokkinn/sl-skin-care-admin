@@ -11,7 +11,7 @@
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
 			$this->title_field = "title";
-			$this->limit = "20";
+			$this->limit = "10";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
 			$this->button_table_action = true;
@@ -30,8 +30,8 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Icon","name"=>"icon","image"=>true];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Icon","name"=>"icon","image"=>true];
 			$this->col[] = ["label"=>"Fee","name"=>"fee"];
 			$this->col[] = ["label"=>"Created By","name"=>"created_by","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Created At","name"=>"created_at"];
@@ -39,17 +39,16 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
 			$this->form[] = ['label'=>'Icon','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10','placeholder'=>'Fee'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Icon","name"=>"icon","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Title","name"=>"title","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
-			//$this->form[] = ["label"=>"Fee","name"=>"fee","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Created By","name"=>"created_by","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Icon','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10','placeholder'=>'Title'];
+			//$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 

@@ -42,20 +42,19 @@
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_product,title'];
-			$this->form[] = ['label'=>'From Item','name'=>'from_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'To Item','name'=>'to_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'From Item','name'=>'from_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10','placeholder'=>'Form'];
+			$this->form[] = ['label'=>'To Item','name'=>'to_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10','placeholder'=>'To'];
+			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'number','validation'=>'required|min:1|max:255','width'=>'col-sm-10','placeholder'=>'Price'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Active;Inactive'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Product Id","name"=>"product_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"product,id"];
-			//$this->form[] = ["label"=>"From Item","name"=>"from_item","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
-			//$this->form[] = ["label"=>"To Item","name"=>"to_item","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
-			//$this->form[] = ["label"=>"Price","name"=>"price","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Status","name"=>"status","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Created By","name"=>"created_by","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_product,title'];
+			//$this->form[] = ['label'=>'From Item','name'=>'from_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10','placeholder'=>'Form'];
+			//$this->form[] = ['label'=>'To Item','name'=>'to_item','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10','placeholder'=>'To'];
+			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'number','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Active;Inactive'];
 			# OLD END FORM
 
 			/* 

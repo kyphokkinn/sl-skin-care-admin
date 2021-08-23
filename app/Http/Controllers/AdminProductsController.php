@@ -11,7 +11,7 @@
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
 			$this->title_field = "title";
-			$this->limit = "20";
+			$this->limit = "10";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
 			$this->button_table_action = true;
@@ -30,9 +30,9 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Category","name"=>"category_id","join"=>"tb_category,name"];
-			$this->col[] = ["label"=>"Image Path","name"=>"image_path","image"=>true];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Category","name"=>"category_id","join"=>"tb_category,name"];
+			$this->col[] = ["label"=>"Image","name"=>"image_path","image"=>true];
 			$this->col[] = ["label"=>"Price","name"=>"price"];
 			$this->col[] = ["label"=>"Price On Sale","name"=>"price_on_sale"];
 			$this->col[] = ["label"=>"On Sale Start","name"=>"on_sale_start"];
@@ -43,29 +43,30 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
 			$this->form[] = ['label'=>'Category','name'=>'category_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_category,name'];
-			$this->form[] = ['label'=>'Image Path','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'enter a title'];
-			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Image','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10','placeholder'=>'Price'];
+			$this->form[] = ['label'=>'Price On Sale','name'=>'price_on_sale','type'=>'text','validation'=>'numeric','width'=>'col-sm-10','placeholder'=>'Sale Price'];
+			$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'From'];
+			$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'To'];
+			$this->form[] = ['label'=>'Overview','name'=>'overview','type'=>'text','width'=>'col-sm-10','placeholder'=>'Short Description'];
+			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'Description'];
 			$this->form[] = ['label'=>'Benefit','name'=>'benefit','type'=>'wysiwyg','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Overview','name'=>'overview','type'=>'text','width'=>'col-sm-10','placeholder'=>'enter short description about product', 'help'=>'ex. ប្រើភ្លាមស្អាតភ្លាម'];
-			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Price On Sale','name'=>'price_on_sale','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Category Id","name"=>"category_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"category,id"];
-			//$this->form[] = ["label"=>"Image Path","name"=>"image_path","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Title","name"=>"title","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
-			//$this->form[] = ["label"=>"Description","name"=>"description","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
-			//$this->form[] = ["label"=>"Price","name"=>"price","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Price On Sale","name"=>"price_on_sale","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"On Sale Start","name"=>"on_sale_start","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"On Sale End","name"=>"on_sale_end","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Created By","name"=>"created_by","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
+			//$this->form[] = ['label'=>'Category','name'=>'category_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_category,name'];
+			//$this->form[] = ['label'=>'Image','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Price On Sale','name'=>'price_on_sale','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10','help'=>'ex. ប្រើភ្លាមស្អាតភ្លាម','placeholder'=>'enter short description about product'];
+			//$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Overview','name'=>'overview','type'=>'text','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Benefit','name'=>'benefit','type'=>'wysiwyg','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 
