@@ -41,7 +41,7 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Title'];
 			$this->form[] = ['label'=>'User','name'=>'user_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'cms_users,name'];
 			$this->form[] = ['label'=>'Is All','name'=>'is_all','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'No;Yes'];
 			$this->form[] = ['label'=>'Content','name'=>'content','type'=>'wysiwyg','validation'=>'required','width'=>'col-sm-10'];
@@ -50,7 +50,7 @@
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			//$this->form[] = ['label'=>'User','name'=>'user_id','type'=>'select2','width'=>'col-sm-10','relationship_table'=>'cms_users,name'];
+			//$this->form[] = ['label'=>'User','name'=>'user_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'cms_users,name'];
 			//$this->form[] = ['label'=>'Is All','name'=>'is_all','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'No;Yes'];
 			//$this->form[] = ['label'=>'Content','name'=>'content','type'=>'wysiwyg','validation'=>'required','width'=>'col-sm-10'];
 			# OLD END FORM

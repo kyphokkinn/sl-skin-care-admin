@@ -32,7 +32,7 @@
 			$this->col = [];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
 			$this->col[] = ["label"=>"Image Path","name"=>"image_path","image"=>true];
-			$this->col[] = ["label"=>"Product List","name"=>"product_list"];
+			$this->col[] = ["label"=>"Product List","name"=>"product_list","join"=>"tb_product,title"];
 			$this->col[] = ["label"=>"Price Set","name"=>"price_set"];
 			$this->col[] = ["label"=>"Price On Sale","name"=>"price_on_sale"];
 			$this->col[] = ["label"=>"On Sale Start","name"=>"on_sale_start"];

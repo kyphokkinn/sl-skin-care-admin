@@ -32,7 +32,6 @@
 			$this->col = [];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
 			$this->col[] = ["label"=>"Image","name"=>"icon","image"=>true];
-			$this->col[] = ["label"=>"Link Url","name"=>"link"];
 			$this->col[] = ["label"=>"Type","name"=>"type"];
 			$this->col[] = ["label"=>"Created By","name"=>"created_by","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Created At","name"=>"created_at"];
@@ -52,8 +51,8 @@
 			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
 			//$this->form[] = ['label'=>'Image','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Type','name'=>'type','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Phone;Address;AboutUs;Other'];
-			//$this->form[] = ['label'=>'Content','name'=>'content','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
-			//$this->form[] = ['label'=>'Link Url','name'=>'link','type'=>'text','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Link Url','name'=>'link','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
+			//$this->form[] = ['label'=>'Content','name'=>'content','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 
