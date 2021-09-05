@@ -55,7 +55,7 @@
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Order','name'=>'order_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_order,id','datatable_format'=>'\'#\',id'];
+			//$this->form[] = ['label'=>'Order','name'=>'order_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_order,id'];
 			//$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			//$this->form[] = ['label'=>'Is Promotion','name'=>'is_promotion','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'No;Yes'];
 			//$this->form[] = ['label'=>'Promotion','name'=>'promotion_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_promotion,title'];

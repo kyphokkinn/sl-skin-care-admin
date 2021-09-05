@@ -52,7 +52,7 @@
 			$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'From'];
 			$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'To'];
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'Description'];
-			$this->form[] = ['label'=>'Total Price','name'=>'total_price','type'=>'number','validation'=>'numeric','width'=>'col-sm-10','placeholder'=>'Total'];
+			$this->form[] = ['label'=>'Total Price','name'=>'total_price','type'=>'number','validation'=>'numeric','width'=>'col-sm-10','placeholder'=>'Total','readonly'=>'true', 'formula'=>'([price_set])*1+([price_on_sale]*1)'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
