@@ -30,7 +30,7 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Name","name"=>"title"];
 			$this->col[] = ["label"=>"Image Path","name"=>"image_path","image"=>true];
 			$this->col[] = ["label"=>"Product List","name"=>"product_list","join"=>"tb_product,title"];
 			$this->col[] = ["label"=>"Price Set","name"=>"price_set"];
@@ -43,7 +43,7 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
+			$this->form[] = ['label'=>'Name','name'=>'title','type'=>'text','validation'=>'required|string|min:1|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
 			$this->form[] = ['label'=>'Product','name'=>'product_list','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			$this->form[] = ['label'=>'Image','name'=>'image_path','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Price','name'=>'price_set','type'=>'number','validation'=>'numeric','width'=>'col-sm-10'];
@@ -51,7 +51,6 @@
 			$this->form[] = ['label'=>'On Sale Start','name'=>'on_sale_start','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'From'];
 			$this->form[] = ['label'=>'On Sale End','name'=>'on_sale_end','type'=>'date','validation'=>'date','width'=>'col-sm-10','placeholder'=>'To'];
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'Description'];
-			$this->form[] = ['label'=>'Total Price','name'=>'total_price','type'=>'number','validation'=>'numeric','width'=>'col-sm-10','placeholder'=>'Total'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM

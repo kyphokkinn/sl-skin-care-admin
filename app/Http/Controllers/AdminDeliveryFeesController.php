@@ -30,8 +30,8 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Title","name"=>"title"];
-			$this->col[] = ["label"=>"Icon","name"=>"icon","image"=>true];
+			$this->col[] = ["label"=>"Name","name"=>"title"];
+			$this->col[] = ["label"=>"Image","name"=>"icon","image"=>true];
 			$this->col[] = ["label"=>"Fee","name"=>"fee"];
 			$this->col[] = ["label"=>"Created By","name"=>"created_by","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Created At","name"=>"created_at"];
@@ -39,16 +39,16 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
-			$this->form[] = ['label'=>'Icon','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Name','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
+			$this->form[] = ['label'=>'Image','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10','placeholder'=>'Fee'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Icon','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10','placeholder'=>'Title'];
-			//$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:2|max:255','width'=>'col-sm-10','placeholder'=>'Title'];
+			//$this->form[] = ['label'=>'Icon','name'=>'icon','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Fee','name'=>'fee','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10','placeholder'=>'Fee'];
 			# OLD END FORM
 
 			/* 

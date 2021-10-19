@@ -46,11 +46,11 @@
 			$this->form[] = ['label'=>'Product','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'tb_product,title'];
 			$this->form[] = ['label'=>'Is Promotion','name'=>'is_promotion','type'=>'radio','validation'=>'required|string','width'=>'col-sm-10','dataenum'=>'No;Yes'];
 			$this->form[] = ['label'=>'Promotion','name'=>'promotion_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'tb_promotion,title'];
-			$this->form[] = ['label'=>'Qty','name'=>'qty','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Amount','name'=>'amount','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Discount Amount','name'=>'discount_amount','type'=>'text','validation'=>'numeric','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Total Amount','name'=>'total_amount','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Qty','name'=>'qty','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Amount','name'=>'amount','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Discount Amount','name'=>'discount_amount','type'=>'number','validation'=>'numeric','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Total Amount','name'=>'total_amount','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
