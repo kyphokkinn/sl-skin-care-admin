@@ -78,7 +78,7 @@
 						'grand_total' => $params['grand_total'],
 						'screen_pay' => $params['screen_pay'] != null ? CRUDBooster::uploadFile2($request, 'screen_pay') : null,
 						'pay_by' => $params['pay_by']??"Cash",
-						'status_delivery' => $params['status_delivery']??"Preparing",
+						'status_delivery' => $params['status_delivery']??"Pending",
 						'created_by' => $params['created_by']
 					]);
 					$insert_details = array();
@@ -132,7 +132,7 @@
 								->where('token', request('token'))
 								->update(['user_id'=>$item->customer_id]);
 						} else {
-							AdminOrdersController::update_status($order_id, 'Preparing');
+							AdminOrdersController::update_status($order_id, 'Pending');
 						}
 						AdminOrdersController::sendMailOrder($order_id, 'new_order');
 						return response()->json(['api_status'=>1,'api_message'=>'success'], 200);

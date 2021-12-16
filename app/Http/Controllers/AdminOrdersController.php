@@ -63,7 +63,7 @@
 			$this->form[] = ['label'=>'Grand Total','name'=>'grand_total','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Screen Pay','name'=>'screen_pay','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Status Payment','name'=>'status_payment','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Unpaid;Paid'];
-			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Preparing;On The Way;Returned;Delivered'];
+			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Pending;On Delivery;Confirmed;Delivered'];
 			$this->form[] = ['label'=>'Pay By','name'=>'pay_by','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Cash On Delivery;E-Cash'];
 			$this->form[] = ['label'=>'Bank','name'=>'payment_id','type'=>'image','width'=>'col-sm-5','datatable'=>'tb_payment_method,photo'];
 			$this->form[] = ['label'=>'Note','name'=>'note','type'=>'textarea','width'=>'col-sm-10'];
@@ -156,7 +156,7 @@
 	        | 
 	        */
 	        $this->index_button = array(
-				['label'=>'Preparing', 'url'=>CRUDBooster::mainPath('?filter_column%5Btb_order.order_date%5D%5Btype%5D=&filter_column%5Btb_order.order_date%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order.receiver_phone%5D%5Btype%5D=&filter_column%5Btb_order.receiver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.address%5D%5Btype%5D=&filter_column%5Btb_order.address%5D%5Bsorting%5D=&filter_column%5Btb_order.total_amount%5D%5Btype%5D=&filter_column%5Btb_order.total_amount%5D%5Bsorting%5D=&filter_column%5Btb_order.grand_total%5D%5Btype%5D=&filter_column%5Btb_order.grand_total%5D%5Bsorting%5D=&filter_column%5Btb_order.status_payment%5D%5Btype%5D=&filter_column%5Btb_order.status_payment%5D%5Bsorting%5D=&filter_column%5Btb_order.status_delivery%5D%5Btype%5D=%3D&filter_column%5Btb_order.status_delivery%5D%5Bvalue%5D=Preparing&filter_column%5Btb_order.status_delivery%5D%5Bsorting%5D=&filter_column%5Btb_order.pay_by%5D%5Btype%5D=&filter_column%5Btb_order.pay_by%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_name%5D%5Btype%5D=&filter_column%5Btb_order.driver_name%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_phone%5D%5Btype%5D=&filter_column%5Btb_order.driver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.is_cancel%5D%5Btype%5D=&filter_column%5Btb_order.is_cancel%5D%5Bsorting%5D=&filter_column%5Btb_order.created_at%5D%5Btype%5D=&filter_column%5Btb_order.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forders')],
+				['label'=>'Pending', 'url'=>CRUDBooster::mainPath('?filter_column%5Btb_order.order_date%5D%5Btype%5D=&filter_column%5Btb_order.order_date%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order.receiver_phone%5D%5Btype%5D=&filter_column%5Btb_order.receiver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.address%5D%5Btype%5D=&filter_column%5Btb_order.address%5D%5Bsorting%5D=&filter_column%5Btb_order.total_amount%5D%5Btype%5D=&filter_column%5Btb_order.total_amount%5D%5Bsorting%5D=&filter_column%5Btb_order.grand_total%5D%5Btype%5D=&filter_column%5Btb_order.grand_total%5D%5Bsorting%5D=&filter_column%5Btb_order.status_payment%5D%5Btype%5D=&filter_column%5Btb_order.status_payment%5D%5Bsorting%5D=&filter_column%5Btb_order.status_delivery%5D%5Btype%5D=%3D&filter_column%5Btb_order.status_delivery%5D%5Bvalue%5D=Pending&filter_column%5Btb_order.status_delivery%5D%5Bsorting%5D=&filter_column%5Btb_order.pay_by%5D%5Btype%5D=&filter_column%5Btb_order.pay_by%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_name%5D%5Btype%5D=&filter_column%5Btb_order.driver_name%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_phone%5D%5Btype%5D=&filter_column%5Btb_order.driver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.is_cancel%5D%5Btype%5D=&filter_column%5Btb_order.is_cancel%5D%5Bsorting%5D=&filter_column%5Btb_order.created_at%5D%5Btype%5D=&filter_column%5Btb_order.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forders')],
 				['label'=>'Unpaid', 'url'=>CRUDBooster::mainPath('?filter_column%5Btb_order.order_date%5D%5Btype%5D=&filter_column%5Btb_order.order_date%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order.receiver_phone%5D%5Btype%5D=&filter_column%5Btb_order.receiver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.address%5D%5Btype%5D=&filter_column%5Btb_order.address%5D%5Bsorting%5D=&filter_column%5Btb_order.total_amount%5D%5Btype%5D=&filter_column%5Btb_order.total_amount%5D%5Bsorting%5D=&filter_column%5Btb_order.grand_total%5D%5Btype%5D=&filter_column%5Btb_order.grand_total%5D%5Bsorting%5D=&filter_column%5Btb_order.status_payment%5D%5Btype%5D=%3D&filter_column%5Btb_order.status_payment%5D%5Bvalue%5D=Unpaid&filter_column%5Btb_order.status_payment%5D%5Bsorting%5D=&filter_column%5Btb_order.status_delivery%5D%5Btype%5D=&filter_column%5Btb_order.status_delivery%5D%5Bsorting%5D=&filter_column%5Btb_order.pay_by%5D%5Btype%5D=&filter_column%5Btb_order.pay_by%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_name%5D%5Btype%5D=&filter_column%5Btb_order.driver_name%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_phone%5D%5Btype%5D=&filter_column%5Btb_order.driver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.is_cancel%5D%5Btype%5D=&filter_column%5Btb_order.is_cancel%5D%5Bsorting%5D=&filter_column%5Btb_order.created_at%5D%5Btype%5D=&filter_column%5Btb_order.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forders')],
 				['label'=>'Paid', 'url'=>CRUDBooster::mainPath('?filter_column%5Btb_order.order_date%5D%5Btype%5D=&filter_column%5Btb_order.order_date%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order.receiver_phone%5D%5Btype%5D=&filter_column%5Btb_order.receiver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.address%5D%5Btype%5D=&filter_column%5Btb_order.address%5D%5Bsorting%5D=&filter_column%5Btb_order.total_amount%5D%5Btype%5D=&filter_column%5Btb_order.total_amount%5D%5Bsorting%5D=&filter_column%5Btb_order.grand_total%5D%5Btype%5D=&filter_column%5Btb_order.grand_total%5D%5Bsorting%5D=&filter_column%5Btb_order.status_payment%5D%5Btype%5D=%3D&filter_column%5Btb_order.status_payment%5D%5Bvalue%5D=Paid&filter_column%5Btb_order.status_payment%5D%5Bsorting%5D=&filter_column%5Btb_order.status_delivery%5D%5Btype%5D=&filter_column%5Btb_order.status_delivery%5D%5Bsorting%5D=&filter_column%5Btb_order.pay_by%5D%5Btype%5D=&filter_column%5Btb_order.pay_by%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_name%5D%5Btype%5D=&filter_column%5Btb_order.driver_name%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_phone%5D%5Btype%5D=&filter_column%5Btb_order.driver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.is_cancel%5D%5Btype%5D=&filter_column%5Btb_order.is_cancel%5D%5Bsorting%5D=&filter_column%5Btb_order.created_at%5D%5Btype%5D=&filter_column%5Btb_order.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forders')],
 				['label'=>'Cash', 'url'=>CRUDBooster::mainPath('?filter_column%5Btb_order.order_date%5D%5Btype%5D=&filter_column%5Btb_order.order_date%5D%5Bsorting%5D=&filter_column%5Bcms_users.name%5D%5Btype%5D=&filter_column%5Bcms_users.name%5D%5Bsorting%5D=&filter_column%5Btb_order.receiver_phone%5D%5Btype%5D=&filter_column%5Btb_order.receiver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.address%5D%5Btype%5D=&filter_column%5Btb_order.address%5D%5Bsorting%5D=&filter_column%5Btb_order.total_amount%5D%5Btype%5D=&filter_column%5Btb_order.total_amount%5D%5Bsorting%5D=&filter_column%5Btb_order.grand_total%5D%5Btype%5D=&filter_column%5Btb_order.grand_total%5D%5Bsorting%5D=&filter_column%5Btb_order.status_payment%5D%5Btype%5D=&filter_column%5Btb_order.status_payment%5D%5Bsorting%5D=&filter_column%5Btb_order.status_delivery%5D%5Btype%5D=&filter_column%5Btb_order.status_delivery%5D%5Bsorting%5D=&filter_column%5Btb_order.pay_by%5D%5Btype%5D=%3D&filter_column%5Btb_order.pay_by%5D%5Bvalue%5D=Cash&filter_column%5Btb_order.pay_by%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_name%5D%5Btype%5D=&filter_column%5Btb_order.driver_name%5D%5Bsorting%5D=&filter_column%5Btb_order.driver_phone%5D%5Btype%5D=&filter_column%5Btb_order.driver_phone%5D%5Bsorting%5D=&filter_column%5Btb_order.is_cancel%5D%5Btype%5D=&filter_column%5Btb_order.is_cancel%5D%5Bsorting%5D=&filter_column%5Btb_order.created_at%5D%5Btype%5D=&filter_column%5Btb_order.created_at%5D%5Bsorting%5D=&lasturl=https%3A%2F%2Fwww.lorngdysl.com%2Fadmin%2Forders')],
@@ -325,7 +325,7 @@
 	    */
 	    public function hook_after_add($id) {        
 	        //Your code here
-			self::update_status($id, 'Preparing');
+			self::update_status($id, 'Pending');
 			self::sendMailOrder($id, 'new_order');
 	    }
 
@@ -388,7 +388,7 @@
 			$item = CRUDBooster::first('tb_order', $id);
 			$insert = null;
 			switch ($status) {
-				case 'On The Way':
+				case 'On Delivery':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដឹកចេញតាមផ្លូវ',
 						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន រៀបចំដឹកចេញទៅហើយ សូមមេត្តារង់ចាំ អ្នកដឹករបស់យើងឈ្មោះ ៖ '.$item->driver_name.' លេខទូរស័ព្ទ ៖ '.$item->driver_phone.' នឹងទំនាក់ទំនងទៅលោកអ្នកក្នុងពេលឆាប់ៗនេះ​ ។ សូមអរគុណ'
@@ -400,14 +400,14 @@
 						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន បញ្ជូនដល់គោលដៅ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
 					];
 					break;
-				case 'Preparing':
+				case 'Pending':
 					$insert = [
 						'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបានដាក់ស្នើរ ក្រុមការងារនឹងរៀបចំឆាប់នេះ',
 						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
 					];
 					break;
 			}
-			if (in_array($status, ['Preparing', 'Delivered', 'On The Way'])) {
+			if (in_array($status, ['Pending', 'Delivered', 'On Delivery'])) {
 				$insert['is_all'] = 'No';
 				$insert['user_id'] = $item->customer_id;
 				$insert['user_id_list'] = $item->customer_id;
