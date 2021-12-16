@@ -63,7 +63,7 @@
 			$this->form[] = ['label'=>'Grand Total','name'=>'grand_total','type'=>'text','validation'=>'required|numeric','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Screen Pay','name'=>'screen_pay','type'=>'upload','validation'=>'image','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Status Payment','name'=>'status_payment','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Unpaid;Paid'];
-			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Pending;On Delivery;Confirmed;Delivered'];
+			$this->form[] = ['label'=>'Status Delivery','name'=>'status_delivery','type'=>'select','width'=>'col-sm-10','dataenum'=>'Pending;Confirmed;On Delivery;Delivered'];
 			$this->form[] = ['label'=>'Pay By','name'=>'pay_by','type'=>'radio','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Cash On Delivery;E-Cash'];
 			$this->form[] = ['label'=>'Bank','name'=>'payment_id','type'=>'image','width'=>'col-sm-5','datatable'=>'tb_payment_method,photo'];
 			$this->form[] = ['label'=>'Note','name'=>'note','type'=>'textarea','width'=>'col-sm-10'];
@@ -406,8 +406,14 @@
 						'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
 					];
 					break;
+				case 'Confirmed':
+						$insert = [
+							'title' => 'ការបញ្ជាទិញលេខ #'.$id.' ត្រូវបាន Confirmed  ក្រុមការងារនឹងរៀបចំឆាប់នេះ',
+							'content' => 'ការកម្មង់របស់លោកអ្នកត្រូវបាន ត្រូវបានកំពុងត្រួតពិនិត្យ សូមអរគុណសម្រាប់ការ កម្មង់របស់លោកអ្នក ជូនពរសំណាងល្អ ។'
+						];
+					break;
 			}
-			if (in_array($status, ['Pending', 'Delivered', 'On Delivery'])) {
+			if (in_array($status, ['Pending',"Confirmed", 'Delivered', 'On Delivery'])) {
 				$insert['is_all'] = 'No';
 				$insert['user_id'] = $item->customer_id;
 				$insert['user_id_list'] = $item->customer_id;

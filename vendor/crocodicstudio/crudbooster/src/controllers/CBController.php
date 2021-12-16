@@ -457,7 +457,6 @@ class CBController extends Controller
 
                 if ($type == 'between') {
                     if ($key && $value) {
-                        $value = [date_format(date_create($value[0]), 'Y-m-d'),date_format(date_create($value[1]), 'Y-m-d')];
                         $result->whereBetween($key, $value);
                     }
                 } else {
@@ -552,10 +551,10 @@ class CBController extends Controller
 
                 if (isset($col['image'])) {
                     if ($value == '') {
-                        $value = "<a  data-lightbox='roadtrip' rel='group_{{ $table }}' title='$label: $title' href='".asset('vendor/crudbooster/avatar.jpg')."'><img width='40px' height='40px' src='".asset('vendor/crudbooster/avatar.jpg')."'/></a>";
+                        $value = "<a  data-lightbox='roadtrip' rel='group_{{$table}}' title='$label: $title' href='".asset('vendor/crudbooster/avatar.jpg')."'><img width='40px' height='40px' src='".asset('vendor/crudbooster/avatar.jpg')."'/></a>";
                     } else {
                         $pic = (strpos($value, 'http://') !== false) ? $value : asset($value);
-                        $value = "<a data-lightbox='roadtrip'  rel='group_{{ $table }}' title='$label: $title' href='".$pic."'><img width='40px' height='40px' src='".$pic."'/></a>";
+                        $value = "<a data-lightbox='roadtrip'  rel='group_{{$table}}' title='$label: $title' href='".$pic."'><img width='40px' height='40px' src='".$pic."'/></a>";
                     }
                 }
 
@@ -581,7 +580,7 @@ class CBController extends Controller
                     foreach ($row as $k => $v) {
                         $col['callback_php'] = str_replace("[".$k."]", $v, $col['callback_php']);
                     }
-@eval("\$value = ".$col['callback_php'].";");
+                    @eval("\$value = ".$col['callback_php'].";");
                 }
 
                 //New method for callback
