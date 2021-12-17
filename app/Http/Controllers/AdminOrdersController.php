@@ -441,7 +441,7 @@
 			if ($item->screen_pay) {
 				$item->screen_pay = URL::to($item->screen_pay);
 			}
-			CRUDBooster::sendEmail(['to' => 'slskincare626@gmail.com', 'data' => collect($item)->all(), 'template'=> $template]);
+			CRUDBooster::sendEmail(['to' => 'chingc035@gmail.com', 'data' => collect($item)->all(), 'template'=> $template]);
 		}
 
 	    //By the way, you can still create your own method in here... :) 
