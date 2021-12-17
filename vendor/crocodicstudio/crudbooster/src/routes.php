@@ -3,10 +3,10 @@
 /* ROUTER FOR API GENERATOR */
 $namespace = '\crocodicstudio\crudbooster\controllers';
 
-Route::group(['middleware' => ['api', '\crocodicstudio\crudbooster\middlewares\CBAuthAPI'], 'namespace' => 'App\Http\Controllers'], function () {
+Route::group(['middleware' => ['api', '\crocodicstudio\crudbooster\middlewares\CBAuthAPI'], 'namespace' => 'App\Http\Controllers\Api'], function () {
     //Router for custom api defeault
 
-    $dir = scandir(base_path("app/Http/Controllers"));
+    $dir = scandir(base_path("app/Http/Controllers/Api"));
     foreach ($dir as $v) {
         $v = str_replace('.php', '', $v);
         $names = array_filter(preg_split('/(?=[A-Z])/', str_replace('Controller', '', $v)));
