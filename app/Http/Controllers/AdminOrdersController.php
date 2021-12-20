@@ -44,7 +44,6 @@
 			$this->col[] = ["label"=>"Status Payment","name"=>"status_payment"];
 			$this->col[] = ["label"=>"Status Delivery","name"=>"status_delivery"];
 			$this->col[] = ["label"=>"Pay By","name"=>"pay_by"];
-			$this->col[] = ["label"=>"Driver Name","name"=>"driver_name"];
 			$this->col[] = ["label"=>"Driver Phone","name"=>"driver_phone"];
 			$this->col[] = ["label"=>"Is Cancel","name"=>"is_cancel"];
 			$this->col[] = ["label"=>"Created At","name"=>"created_at"];

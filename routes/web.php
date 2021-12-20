@@ -21,6 +21,7 @@ Route::group([
 ], function () {
     Route::post('/order_list_create', 'ApiOrderCreateController@create_order_with_items');
     Route::post('/push_notification_order', 'ApiOrderCreateController@push_order');
+    Route::get('/products/random', 'ApiProductsController@get_random');
 });
 
 Route::get('/admin/daily-report', 'ReportController@index');

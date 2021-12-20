@@ -56,8 +56,35 @@
 								}
 							}
 						}
+						if ($item->image_path) {
+						       $item->image_path = url($item->image_path);
+							     }
 					}
 				}
 		    }
-
+			
+			public function get_random() {
+				    $params = Request::all();
+				    $result = array('api_status' => 1, 'api_message' => 'success', 'data' => null);
+				    $where = [];
+				    $where[] = '1=1';
+				    if(isset($params['id'])) {
+				     $where[] = 'id NOT IN ('.$params['id'].')';
+				    }
+				    $data = DB::table('tb_product')
+				     ->whereNull('deleted_at')
+				     ->whereRaw(implode(' AND ', $where))
+				     ->limit(10)
+				     ->get();
+				    if($data->count() == 0) {
+				     $data = DB::table('tb_product')
+				      ->whereNull('deleted_at')
+				      ->limit(10)
+				      ->get();
+				    }
+				    $result['data'] = $data;
+				    $this->hook_after($params, $result);
+				    return response()->json($result);
+				    
+				   }
 		}
