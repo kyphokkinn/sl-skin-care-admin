@@ -49,7 +49,6 @@ class ApiProductsController extends \crocodicstudio\crudbooster\controllers\ApiC
                     ->get();
 
                 $wishlist = DB::table('tb_wishlist')
-                    ->whereNull('deleted_at')
                     ->where('created_by', $postdata->user_id)
                     ->where('product_id', $item->id)
                     ->first();
