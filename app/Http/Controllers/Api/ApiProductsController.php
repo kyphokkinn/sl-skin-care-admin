@@ -20,7 +20,7 @@ class ApiProductsController extends \crocodicstudio\crudbooster\controllers\ApiC
     {
         //This method will be execute before run the main process
         CRUDBooster::copyPostdata($postdata, $this->postdata);
-        $this->user_id = $postdata['user_id'];
+        $this->user_id = $this->postdata['user_id'];
         unset($postdata['user_id'], $this->postdata['user_id']);
     }
 
@@ -38,6 +38,7 @@ class ApiProductsController extends \crocodicstudio\crudbooster\controllers\ApiC
 
     public function hook_after($postdata, &$result)
     {
+       
         //This method will be execute after run the main process
         if (!empty($result['data'])) {
             foreach ($result['data'] as $item) {
@@ -49,7 +50,7 @@ class ApiProductsController extends \crocodicstudio\crudbooster\controllers\ApiC
                     ->get();
 
                 $wishlist = DB::table('tb_wishlist')
-                    ->where('created_by', $postdata->user_id)
+                    ->where('created_by',  $this->user_id)
                     ->where('product_id', $item->id)
                     ->first();
                 if ($wishlist) {
